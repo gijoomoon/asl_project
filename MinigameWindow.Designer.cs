@@ -1,6 +1,6 @@
 ﻿namespace asl_project
 {
-    partial class Form1
+    partial class MinigameWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // MinigameWindow
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.Name = "MinigameWindow";
+            this.Text = "산책";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
     }
 }
-
