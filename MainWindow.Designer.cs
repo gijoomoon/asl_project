@@ -42,6 +42,10 @@
             this.pgbH = new System.Windows.Forms.ProgressBar();
             this.pgbTR = new System.Windows.Forms.ProgressBar();
             this.pgbST = new System.Windows.Forms.ProgressBar();
+            this.lbGrowState = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbCh)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,7 +66,6 @@
             // 
             // tmrGrow
             // 
-            this.tmrGrow.Interval = 600;
             this.tmrGrow.Tick += new System.EventHandler(this.tmrGrow_Tick);
             // 
             // pbCh
@@ -78,7 +81,7 @@
             // lbGrow
             // 
             this.lbGrow.AutoSize = true;
-            this.lbGrow.Location = new System.Drawing.Point(24, 27);
+            this.lbGrow.Location = new System.Drawing.Point(116, 31);
             this.lbGrow.Name = "lbGrow";
             this.lbGrow.Size = new System.Drawing.Size(80, 18);
             this.lbGrow.TabIndex = 1;
@@ -87,7 +90,7 @@
             // lbH
             // 
             this.lbH.AutoSize = true;
-            this.lbH.Location = new System.Drawing.Point(356, 27);
+            this.lbH.Location = new System.Drawing.Point(413, 25);
             this.lbH.Name = "lbH";
             this.lbH.Size = new System.Drawing.Size(80, 18);
             this.lbH.TabIndex = 2;
@@ -96,7 +99,7 @@
             // lbTR
             // 
             this.lbTR.AutoSize = true;
-            this.lbTR.Location = new System.Drawing.Point(356, 67);
+            this.lbTR.Location = new System.Drawing.Point(415, 63);
             this.lbTR.Name = "lbTR";
             this.lbTR.Size = new System.Drawing.Size(80, 18);
             this.lbTR.TabIndex = 3;
@@ -105,7 +108,7 @@
             // lbST
             // 
             this.lbST.AutoSize = true;
-            this.lbST.Location = new System.Drawing.Point(356, 109);
+            this.lbST.Location = new System.Drawing.Point(413, 105);
             this.lbST.Name = "lbST";
             this.lbST.Size = new System.Drawing.Size(98, 18);
             this.lbST.TabIndex = 4;
@@ -115,7 +118,7 @@
             // 
             this.pgbGrow.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pgbGrow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.pgbGrow.Location = new System.Drawing.Point(27, 63);
+            this.pgbGrow.Location = new System.Drawing.Point(30, 63);
             this.pgbGrow.Name = "pgbGrow";
             this.pgbGrow.Size = new System.Drawing.Size(166, 22);
             this.pgbGrow.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -125,7 +128,7 @@
             // 
             this.pgbH.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pgbH.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.pgbH.Location = new System.Drawing.Point(442, 27);
+            this.pgbH.Location = new System.Drawing.Point(487, 23);
             this.pgbH.Name = "pgbH";
             this.pgbH.Size = new System.Drawing.Size(166, 22);
             this.pgbH.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -135,7 +138,7 @@
             // 
             this.pgbTR.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pgbTR.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.pgbTR.Location = new System.Drawing.Point(442, 67);
+            this.pgbTR.Location = new System.Drawing.Point(487, 63);
             this.pgbTR.Name = "pgbTR";
             this.pgbTR.Size = new System.Drawing.Size(166, 22);
             this.pgbTR.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -145,17 +148,57 @@
             // 
             this.pgbST.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pgbST.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.pgbST.Location = new System.Drawing.Point(442, 109);
+            this.pgbST.Location = new System.Drawing.Point(487, 105);
             this.pgbST.Name = "pgbST";
             this.pgbST.Size = new System.Drawing.Size(166, 22);
             this.pgbST.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.pgbST.TabIndex = 8;
+            // 
+            // lbGrowState
+            // 
+            this.lbGrowState.AutoSize = true;
+            this.lbGrowState.Location = new System.Drawing.Point(27, 31);
+            this.lbGrowState.Name = "lbGrowState";
+            this.lbGrowState.Size = new System.Drawing.Size(44, 18);
+            this.lbGrowState.TabIndex = 9;
+            this.lbGrowState.Text = "유아";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(341, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 18);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "배고픔";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(341, 63);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 18);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "피로도";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(327, 105);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 18);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "스트레스";
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(678, 644);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbGrowState);
             this.Controls.Add(this.pgbST);
             this.Controls.Add(this.pgbTR);
             this.Controls.Add(this.pgbH);
@@ -188,6 +231,10 @@
         private System.Windows.Forms.ProgressBar pgbH;
         private System.Windows.Forms.ProgressBar pgbTR;
         private System.Windows.Forms.ProgressBar pgbST;
+        private System.Windows.Forms.Label lbGrowState;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 
