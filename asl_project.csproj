@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FoodItem.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,7 +97,12 @@
     <None Include="Resources\food.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\pixil-frame-0 %2822%29.png" />
+    <None Include="Resources\Rice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eatingNoodlech.png" />
+    <Content Include="Resources\eatingRicech.png" />
+    <None Include="Resources\Noodle.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

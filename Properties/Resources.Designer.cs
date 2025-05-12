@@ -73,6 +73,26 @@ namespace asl_project.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap eatingNoodlech {
+            get {
+                object obj = ResourceManager.GetObject("eatingNoodlech", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap eatingRicech {
+            get {
+                object obj = ResourceManager.GetObject("eatingRicech", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap food {
             get {
                 object obj = ResourceManager.GetObject("food", resourceCulture);
@@ -83,9 +103,19 @@ namespace asl_project.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap pixil_frame_0__22_ {
+        internal static System.Drawing.Bitmap Noodle {
             get {
-                object obj = ResourceManager.GetObject("pixil-frame-0 (22)", resourceCulture);
+                object obj = ResourceManager.GetObject("Noodle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap Rice {
+            get {
+                object obj = ResourceManager.GetObject("Rice", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+
 namespace asl_project
 {
     enum growState
@@ -21,16 +23,30 @@ namespace asl_project
         private int stat_tired;
         private int stat_stress;
         private double stat_grow;
-     
-        private growState grow_state; //현재 성장 상태를 저장하는 변수 (유아기: BABY, 청년기: CHILD, 성년기: ADULT)
 
+        private growState grow_state; //현재 성장 상태를 저장하는 변수 (유아기: BABY, 청년기: CHILD, 성년기: ADULT)
+        public List<Label> Foodlabels;
 
         public MainWindow()
         {
             InitializeComponent();
             init_stat(false);
+
+
+            Foodlabels = new List<Label> { withNoodlelbl, withRicelbl };
+            FoodItem rice = new FoodItem(RicePBX, characterPBX, eatingRicech,  DecreaseHunger,
+                    new List<PictureBox> { NoodlePBX }, Foodlabels);
+            FoodItem noodle = new FoodItem(NoodlePBX, characterPBX, eatingNoodlech, DecreaseHunger,
+                    new List<PictureBox> { RicePBX }, Foodlabels );
         }
 
+
+        private void DecreaseHunger()
+        {
+            stat_hungry -= 10;
+            MessageBox.Show("배고픔이 10 감소하였습니다.");
+
+        }
         private void init_stat(bool restart)
         {
             if (!restart) //임시로 초기화해둠, 추후 이전에 플레이하던 값 가져오는 작업 필요
@@ -198,6 +214,8 @@ namespace asl_project
             if (stat_hungry > 30)
             {
                 RicePBX.Visible = true;
+                NoodlePBX.Visible = true;
+                withNoodlelbl.Visible = true;
                 withRicelbl.Visible = true;
             }
             else
@@ -206,9 +224,6 @@ namespace asl_project
             }
         }
 
-        private void click_RicePBX(object sender, EventArgs e)
-        {
-
-        }
     }
 }
+
