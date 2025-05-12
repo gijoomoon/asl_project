@@ -1,0 +1,12 @@
+C:\Users\USER\Source\Repos\asl_project\bin\Debug\asl_project.exe.config
+C:\Users\USER\Source\Repos\asl_project\bin\Debug\asl_project.exe
+C:\Users\USER\Source\Repos\asl_project\bin\Debug\asl_project.pdb
+C:\Users\USER\Source\Repos\asl_project\obj\Debug\asl_project.csproj.AssemblyReference.cache
+C:\Users\USER\Source\Repos\asl_project\obj\Debug\asl_project.csproj.SuggestedBindingRedirects.cache
+C:\Users\USER\Source\Repos\asl_project\obj\Debug\asl_project.MainWindow.resources
+C:\Users\USER\Source\Repos\asl_project\obj\Debug\asl_project.MinigameWindow.resources
+C:\Users\USER\Source\Repos\asl_project\obj\Debug\asl_project.Properties.Resources.resources
+C:\Users\USER\Source\Repos\asl_project\obj\Debug\asl_project.csproj.GenerateResource.cache
+C:\Users\USER\Source\Repos\asl_project\obj\Debug\asl_project.csproj.CoreCompileInputs.cache
+C:\Users\USER\Source\Repos\asl_project\obj\Debug\asl_project.exe
+C:\Users\USER\Source\Repos\asl_project\obj\Debug\asl_project.pdb

@@ -193,5 +193,22 @@ namespace asl_project
             init_stat(true); //새로 시작
         }
 
+        private void click_eatingPBX(object sender, EventArgs e)
+        {
+            if (stat_hungry > 30)
+            {
+                RicePBX.Visible = true;
+                withRicelbl.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("아직 배가 고프지 않습니다.");
+            }
+        }
+
+        private void click_RicePBX(object sender, EventArgs e)
+        {
+
+        }
     }
 }
