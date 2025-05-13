@@ -23,9 +23,12 @@ namespace asl_project
         private int stat_tired;
         private int stat_stress;
         private double stat_grow;
+        private System.Windows.Forms.Button statusButton;
+        private string characterName = "다마고치";
 
         private growState grow_state; //현재 성장 상태를 저장하는 변수 (유아기: BABY, 청년기: CHILD, 성년기: ADULT)
         public List<Label> Foodlabels;
+
 
         public MainWindow()
         {
@@ -38,6 +41,7 @@ namespace asl_project
                     new List<PictureBox> { NoodlePBX }, Foodlabels);
             FoodItem noodle = new FoodItem(NoodlePBX, characterPBX, eatingNoodlech, DecreaseHunger,
                     new List<PictureBox> { RicePBX }, Foodlabels );
+
         }
 
 
@@ -224,6 +228,89 @@ namespace asl_project
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string level = get_state_string(grow_state);
+            TimeSpan playTime = TimeSpan.FromSeconds(Environment.TickCount / 1000);
+            int growPercent = (int)stat_grow;
+
+            Form popup = new Form();
+            popup.Text = "캐릭터 정보";
+            popup.Size = new Size(320, 300);
+            popup.FormBorderStyle = FormBorderStyle.FixedDialog;
+            popup.StartPosition = FormStartPosition.CenterParent;
+            popup.MaximizeBox = false;
+            popup.MinimizeBox = false;
+
+            // Label: 이름
+            Label lblName = new Label();
+            lblName.Text = "Name:";
+            lblName.Location = new Point(20, 20);
+            lblName.AutoSize = true;
+
+            // TextBox: 이름 입력
+            TextBox txtName = new TextBox();
+            txtName.Text = characterName;
+            txtName.Location = new Point(80, 18);
+            txtName.Width = 200;
+
+            // Label: 레벨
+            Label lblLevel = new Label();
+            lblLevel.Text = $"Level: {level}";
+            lblLevel.Location = new Point(20, 50);
+            lblLevel.AutoSize = true;
+
+            // Label: 플레이타임
+            Label lblTime = new Label();
+            lblTime.Text = $"PlayTime: {playTime.Hours}시간 {playTime.Minutes}분";
+            lblTime.Location = new Point(20, 80);
+            lblTime.AutoSize = true;
+
+            // ProgressBar: 성장도
+            ProgressBar prgGrow = new ProgressBar();
+            prgGrow.Location = new Point(20, 110);
+            prgGrow.Size = new Size(260, 25);
+            prgGrow.Minimum = 0;
+            prgGrow.Maximum = 100;
+            prgGrow.Value = growPercent;
+
+            // Label: 성장도
+            Label lblGrowPercent = new Label();
+            lblGrowPercent.Text = $"성장도: {growPercent}%";
+            lblGrowPercent.Location = new Point(20, 140);
+            lblGrowPercent.AutoSize = true;
+
+            // 저장 버튼
+            Button btnSave = new Button();
+            btnSave.Text = "저장";
+            btnSave.Location = new Point(60, 200);
+            btnSave.Click += (s, args) =>
+            {
+                characterName = txtName.Text.Trim();
+                MessageBox.Show("이름이 저장되었습니다!", "확인", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            };
+
+            // 닫기 버튼
+            Button btnClose = new Button();
+            btnClose.Text = "닫기";
+            btnClose.Location = new Point(160, 200);
+            btnClose.Click += (s, args) =>
+            {
+                popup.Close();
+            };
+
+            // 컨트롤 추가
+            popup.Controls.Add(lblName);
+            popup.Controls.Add(txtName);
+            popup.Controls.Add(lblLevel);
+            popup.Controls.Add(lblTime);
+            popup.Controls.Add(prgGrow);
+            popup.Controls.Add(lblGrowPercent);
+            popup.Controls.Add(btnSave);
+            popup.Controls.Add(btnClose);
+
+            popup.ShowDialog();
+        }
     }
 }
 

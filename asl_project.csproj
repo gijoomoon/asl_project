@@ -100,6 +100,14 @@
     <None Include="Resources\Rice.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\clean.png" />
+    <None Include="Resources\status1.png" />
+    <None Include="Resources\clean1.png" />
+    <None Include="Resources\ggame.png" />
+    <None Include="Resources\dd.png" />
+    <Content Include="Resources\sleep1.png" />
+    <None Include="Resources\sleep11.png" />
+    <Content Include="Resources\status.png" />
     <None Include="Resources\eatingNoodlech.png" />
     <Content Include="Resources\eatingRicech.png" />
     <None Include="Resources\Noodle.png" />
