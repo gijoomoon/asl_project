@@ -311,6 +311,16 @@ namespace asl_project
 
             popup.ShowDialog();
         }
+
+        private void gamePBX_Click(object sender, EventArgs e)
+        {
+            MinigameWindow.MapSize difficulty = (grow_state == growState.ADULT) ? MinigameWindow.MapSize.Hard : MinigameWindow.MapSize.Default;
+            MinigameWindow mg = new MinigameWindow(difficulty);
+            if (mg.ShowDialog() == DialogResult.OK)
+                if (mg.MinigameResult == true)
+                    set_stress(-100);
+
+        }
     }
 }
 
