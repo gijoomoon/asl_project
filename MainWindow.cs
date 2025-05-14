@@ -27,6 +27,7 @@ namespace asl_project
         private string characterName = "다마고치";
 
         private growState grow_state; //현재 성장 상태를 저장하는 변수 (유아기: BABY, 청년기: CHILD, 성년기: ADULT)
+        private bool sleeping;
         public List<Label> Foodlabels;
 
 
@@ -59,6 +60,7 @@ namespace asl_project
                 stat_tired = 80;
                 stat_stress = 80;
                 stat_grow = 0;
+                sleeping = false;
                 grow_state = growState.ADULT;
             }
             else
@@ -67,6 +69,7 @@ namespace asl_project
                 stat_tired = 0;
                 stat_stress = 0;
                 stat_grow = 0;
+                sleeping = false;
                 grow_state = growState.BABY;
             }
 
@@ -81,12 +84,60 @@ namespace asl_project
             pgbST.Value = stat_stress;
             pgbGrow.Value = (int)stat_grow;
 
+            change_ch_image();
+
             if (!restart && (stat_hungry + stat_tired + stat_stress > 250)) die();
 
             tmrH.Start();
             tmrTR.Start();
             tmrST.Start();
             tmrGrow.Start();
+        }
+
+        private void change_ch_image()
+        {
+            if (sleeping)
+            {
+                switch (grow_state)
+                {
+                    case growState.BABY:
+                        characterPBX.Image = Properties.Resources.sleeping0;
+                        break;
+
+                    case growState.CHILD:
+                        characterPBX.Image = Properties.Resources.sleeping1;
+                        break;
+
+                    case growState.ADULT:
+                        characterPBX.Image = Properties.Resources.sleeping2;
+                        break;
+
+                    default:
+                        characterPBX.Image = null;
+                        break;
+                }
+            }
+            else
+            {
+                switch (grow_state)
+                {
+                    case growState.BABY:
+                        characterPBX.Image = Properties.Resources.ch0;
+                        break;
+
+                    case growState.CHILD:
+                        characterPBX.Image = Properties.Resources.ch1;
+                        break;
+
+                    case growState.ADULT:
+                        characterPBX.Image = Properties.Resources.ch2;
+                        break;
+
+                    default:
+                        characterPBX.Image = null;
+                        break;
+                }
+            }
         }
 
         //현재 성장 상태를 뜻하는 grow_state를 인자로 받아, 현재 성장 상태를 문자열로 반환
@@ -140,7 +191,7 @@ namespace asl_project
 
         private void tmrH_Tick(object sender, EventArgs e)
         {
-            if (stat_hungry == 100) return;
+            if (stat_hungry >= 100 || stat_hungry < 0) return;
             stat_hungry++;
             lbH.Text = stat_hungry.ToString();
             pgbH.Value = stat_hungry;
@@ -148,15 +199,16 @@ namespace asl_project
 
         private void tmrTR_Tick(object sender, EventArgs e)
         {
-            if (stat_tired == 100) return;
-            stat_tired++;
+            if (stat_tired >= 100 || stat_tired < 0) return;
+            if (!sleeping) stat_tired++;
+            else stat_tired--;
             lbTR.Text = stat_tired.ToString();
             pgbTR.Value = stat_tired;
         }
 
         private void tmrST_Tick(object sender, EventArgs e)
         {
-            if (stat_stress == 100) return;
+            if (stat_stress >= 100 || stat_stress < 0) return;
             stat_stress++;
             lbST.Text = stat_stress.ToString();
             pgbST.Value = stat_stress;
@@ -169,11 +221,13 @@ namespace asl_project
                 if (grow_state == growState.BABY)
                 {
                     grow_state = growState.CHILD;
+                    characterPBX.Image = Properties.Resources.ch1;
                     stat_grow = 0;
                 }
                 else if (grow_state == growState.CHILD)
                 {
                     grow_state = growState.ADULT;
+                    characterPBX.Image = Properties.Resources.ch2;
                     stat_grow = 0;
                     tmrH.Interval = 2400; //유아기에서 벗어낫으므로 배고픔 느리게 증가
                 }
@@ -215,6 +269,12 @@ namespace asl_project
 
         private void click_eatingPBX(object sender, EventArgs e)
         {
+            if (sleeping)
+            {
+                MessageBox.Show("자는 중입니다.");
+                return;
+            }
+
             if (stat_hungry > 30)
             {
                 RicePBX.Visible = true;
@@ -314,6 +374,11 @@ namespace asl_project
 
         private void gamePBX_Click(object sender, EventArgs e)
         {
+            if (sleeping) {
+                MessageBox.Show("자는 중입니다.");
+                return;
+            }
+
             MinigameWindow.MapSize difficulty = (grow_state == growState.ADULT) ? MinigameWindow.MapSize.Hard : MinigameWindow.MapSize.Default;
             MinigameWindow mg = new MinigameWindow(difficulty);
             if (mg.ShowDialog() == DialogResult.OK)
@@ -321,6 +386,15 @@ namespace asl_project
                     set_stress(-100);
 
         }
+
+        private void SleepingPBX_Click(object sender, EventArgs e)
+        {
+            if (!sleeping) sleeping = true;
+            else sleeping = false;
+
+            change_ch_image();
+        }
+
     }
 }
 

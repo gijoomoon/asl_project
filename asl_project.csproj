@@ -91,7 +91,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ch1.png" />
+    <None Include="Resources\ch2.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\food.png" />
@@ -101,6 +101,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\character.png" />
+    <None Include="Resources\ch0.png" />
+    <None Include="Resources\ch1.png" />
+    <None Include="Resources\btn_sleep.png" />
     <Content Include="Resources\clean.png" />
     <None Include="Resources\wall.png" />
     <None Include="Resources\status1.png" />
@@ -109,8 +112,12 @@
     <None Include="Resources\dd.png" />
     <None Include="Resources\ground.png" />
     <None Include="Resources\destination.png" />
-    <Content Include="Resources\sleep1.png" />
+    <None Include="Resources\eating0.png" />
+    <None Include="Resources\eating1.png" />
+    <Content Include="Resources\sleeping2.png" />
     <None Include="Resources\sleep11.png" />
+    <None Include="Resources\sleeping0.png" />
+    <None Include="Resources\sleeping1.png" />
     <Content Include="Resources\status.png" />
     <None Include="Resources\eatingNoodlech.png" />
     <Content Include="Resources\eatingRicech.png" />
