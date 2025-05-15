@@ -38,12 +38,32 @@ namespace asl_project
             Hard = 35
         }
 
+        public enum TimeLimit
+        {
+            // in milliseconds
+            Default = 5 * 60 * 1000,    // 5분
+            Hard = 10000 //3 * 60 * 1000        // 3분
+        }
+
         public MinigameWindow(MapSize difficulty)
         {
             InitializeComponent();
 
-            // 성장도에 따라 미로 크기 설정
+            // 성장도에 따른 미로 크기, 시간 제한 설정
             mazeSize = (int)difficulty;
+            switch (difficulty)
+            {
+                case MapSize.Hard:
+                    progressBarTime.Maximum = (int)TimeLimit.Hard;
+                    progressBarTime.Value = progressBarTime.Maximum;
+                    break;
+                case MapSize.Default:
+                default:
+                    progressBarTime.Maximum = (int)TimeLimit.Default;
+                    progressBarTime.Value = progressBarTime.Maximum;
+                    break;
+            }
+            progressBarTime.Step = tmr100Millisecond.Interval * -1;
 
             // 이미지 로드
             wallImage = Properties.Resources.wall;
@@ -54,8 +74,10 @@ namespace asl_project
             // 미로 생성
             maze = new Maze(mazeSize, mazeSize, 111); // (임시) 현재 시간을 시드로 설정 (int)DateTime.Now.Ticks & 0x0000FFFF
 
-            // 화면 그리기
+            // 창 크기 변경시 화면 다시 그리기
             this.Resize += (s, e) => panelMazeView.Invalidate();
+
+            // 화면 깜박거림 방지
             this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
 
             // 미로 그리기
@@ -87,6 +109,7 @@ namespace asl_project
             // 미니게임 결과 초기화
             MinigameResult = false;
 
+            tmr100Millisecond.Start();
         }
 
         //private void ResizeGrid()
@@ -104,11 +127,6 @@ namespace asl_project
         //    }
         //}
 
-        private void MinigameWindow_Resize(object sender, EventArgs e)
-        {
-
-        }
-
         private void MinigameWindow_Load(object sender, EventArgs e)
         {
             isLoaded = true;
@@ -119,7 +137,7 @@ namespace asl_project
             Graphics g = e.Graphics;
 
             // 화면 사이즈에 따른 타일 크기
-            int gridSize = Math.Min(this.ClientSize.Width, this.ClientSize.Height - progressBarTime.Height) / mazeSize;
+            int gridSize = Math.Min(panelMazeView.Width, panelMazeView.Height - progressBarTime.Height) / mazeSize;
 
             // 수평 중앙 오프셋
             int offsetX = (panelMazeView.Width - gridSize * mazeSize) / 2;
@@ -138,6 +156,14 @@ namespace asl_project
 
                 }
             }
+        }
+
+        private void tmr100Millisecond_Tick(object sender, EventArgs e)
+        {
+            //if (progressBarTime.Value - tmr100Millisecond.Interval <= 0) this.Close();
+            //else progressBarTime.Value -= tmr100Millisecond.Interval;
+            progressBarTime.PerformStep();
+            if (progressBarTime.Value == 0) this.Close();
         }
 
         private void MinigameWindow_FormClosing(object sender, FormClosingEventArgs e)
