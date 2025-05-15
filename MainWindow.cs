@@ -381,10 +381,23 @@ namespace asl_project
 
             MinigameWindow.MapSize difficulty = (grow_state == growState.ADULT) ? MinigameWindow.MapSize.Hard : MinigameWindow.MapSize.Default;
             MinigameWindow mg = new MinigameWindow(difficulty);
+
+            // 모든 스탯 변화 일시 중지
+            tmrGrow.Stop();
+            tmrH.Stop();
+            tmrST.Stop();
+            tmrTR.Stop();
+
+            // 모달 창
             if (mg.ShowDialog() == DialogResult.OK)
                 if (mg.MinigameResult == true)
                     set_stress(-100);
 
+            // 모든 스탯 변화 재개
+            tmrGrow.Start();
+            tmrH.Start();
+            tmrST.Start();
+            tmrTR.Start();
         }
 
         private void SleepingPBX_Click(object sender, EventArgs e)
