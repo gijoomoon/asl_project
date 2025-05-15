@@ -41,8 +41,8 @@ namespace asl_project
         public enum TimeLimit
         {
             // in milliseconds
-            Default = 5 * 60 * 1000,    // 5분
-            Hard = 10000 //3 * 60 * 1000        // 3분
+            Default = 300000,    // 5분
+            Hard = 180000        // 3분
         }
 
         public MinigameWindow(MapSize difficulty)
@@ -72,7 +72,11 @@ namespace asl_project
             characterImage = Properties.Resources.character;
 
             // 미로 생성
-            maze = new Maze(mazeSize, mazeSize, 111); // (임시) 현재 시간을 시드로 설정 (int)DateTime.Now.Ticks & 0x0000FFFF
+            maze = new Maze(mazeSize, mazeSize, (int)DateTime.Now.Ticks & 0x0000FFFF); // 현재 시간을 시드로 설정 
+
+            charPosX = maze.SpawnX;
+            charPosY = maze.SpawnY;
+            System.Diagnostics.Debug.WriteLine("Spawn Point is " + charPosX.ToString() + ", " + charPosY.ToString());
 
             // 창 크기 변경시 화면 다시 그리기
             this.Resize += (s, e) => panelMazeView.Invalidate();
@@ -80,52 +84,11 @@ namespace asl_project
             // 화면 깜박거림 방지
             this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
 
-            // 미로 그리기
-            //mazePbGrid = new PictureBox[mazeSize, mazeSize];
-            //for (int row = 0; row < mazeSize; row++)
-            //{
-            //    for (int col = 0; col < mazeSize; col++)
-            //    {
-            //        mazePbGrid[row, col] = new PictureBox
-            //        {
-            //            Width = wallImage.Size.Width,
-            //            Height = wallImage.Size.Height,
-            //            Image = maze.GetMazeTile(row, col) == MazeTileType.Wall ? wallImage : groundImage,
-            //            Left = col * wallImage.Size.Width,
-            //            Top = row * wallImage.Size.Height + progressBarTime.Size.Height
-            //        };
-            //        this.Controls.Add(mazePbGrid[row, col]);
-            //    }
-            //}
-
-            // 캐릭터, 목표지점 그리기
-            character = new PictureBox();
-            character.Image = characterImage;
-            this.Controls.Add(character);
-            destination = new PictureBox();
-            destination.Image = destImage;
-            this.Controls.Add(destination);
-
             // 미니게임 결과 초기화
             MinigameResult = false;
 
             tmr100Millisecond.Start();
         }
-
-        //private void ResizeGrid()
-        //{
-        //    int gridSize = this.ClientSize.Width / mazeSize;
-        //    for (int row = 0; row < mazeSize; row++)
-        //    {
-        //        for (int col = 0; col < mazeSize; col++)
-        //        {
-        //            PictureBox pb = mazePbGrid[row, col];
-        //            pb.Width = pb.Height = gridSize;
-        //            pb.Left = col * gridSize;
-        //            pb.Top = row * gridSize + progressBarTime.Height;
-        //        }
-        //    }
-        //}
 
         private void MinigameWindow_Load(object sender, EventArgs e)
         {
@@ -156,6 +119,12 @@ namespace asl_project
 
                 }
             }
+
+            // 도착점 그리기
+            g.DrawImage(destImage, new Rectangle(maze.DestX * gridSize + offsetX, maze.DestY * gridSize, gridSize, gridSize));
+
+            // 캐릭터 그리기
+            g.DrawImage(characterImage, new Rectangle(charPosX * gridSize + offsetX, charPosY * gridSize, gridSize, gridSize));
         }
 
         private void tmr100Millisecond_Tick(object sender, EventArgs e)
@@ -207,11 +176,6 @@ namespace asl_project
             this.Seed = seed;
             maze = new MazeTileType[Width, Height];
             GenerateMaze();
-            // TODO - set spawn and dest
-            // 임시
-            SpawnX = 1; SpawnY = 1;
-            DestX = Width - 2; DestY = Height - 2;
-
         }
 
         public MazeTileType[,] GetMazeCopy()
@@ -236,18 +200,21 @@ namespace asl_project
                     maze[i, j] = MazeTileType.Wall;
 
             Random rng = new Random(Seed);
-            Stack<(int x, int y)> stack = new Stack<(int x, int y)>();
+            Stack<((int x, int y) pos, int depth)> stack = new Stack<((int, int), int)>();
 
-            // 무작위 홀수 좌표 타일에서 시작
-            int startX = rng.Next(Width / 2) * 2 + 1;
-            int startY = rng.Next(Height / 2) * 2 + 1;
+            // 무작위 홀수 좌표 타일에서 시작, 그리고 이 지점을 스폰 지점으로 설정
+            int startX = SpawnX = DestX = rng.Next(Width / 2) * 2 + 1;
+            int startY = SpawnY = DestY = rng.Next(Height / 2) * 2 + 1;
+            int maxDepth = 0;
+
+            System.Diagnostics.Debug.WriteLine("Spawn Point is " + SpawnX.ToString() + ", " + SpawnY.ToString());
             maze[startX, startY] = MazeTileType.Ground;
-            stack.Push((startX, startY));
+            stack.Push(((startX, startY), 0));
 
             // DFS backtracking 미로생성 알고리즘
             while (stack.Count > 0)
             {
-                var (x, y) = stack.Peek();
+                var ((x, y), depth) = stack.Peek();
                 List<(int nx, int ny, int wallX, int wallY)> neighbors = new List<(int, int, int, int)>();
 
                 foreach (var (dx, dy) in Directions)
@@ -268,7 +235,15 @@ namespace asl_project
                     var (nx, ny, wallX, wallY) = neighbors[rng.Next(neighbors.Count)];
                     maze[wallX, wallY] = MazeTileType.Ground;
                     maze[nx, ny] = MazeTileType.Ground;
-                    stack.Push((nx, ny));
+                    stack.Push(((nx, ny), depth + 1));
+
+                    // 지금까지 가장 먼 지점을 도착점으로 갱신
+                    if (depth + 1 > maxDepth)
+                    {
+                        maxDepth = depth + 1;
+                        DestX = nx;
+                        DestY = ny;
+                    }
                 }
                 else
                 {
