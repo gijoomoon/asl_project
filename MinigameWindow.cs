@@ -4,16 +4,21 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace asl_project
 {
     public partial class MinigameWindow : Form
     {
+        //[DllImport("kernel32.dll")]
+        //static extern bool AllocConsole();
+
         private bool isLoaded = false;
 
         private Maze maze;
@@ -34,20 +39,21 @@ namespace asl_project
 
         public enum MapSize
         {
-            Default = 25,
-            Hard = 35
+            Default = 15,
+            Hard = 25
         }
 
         public enum TimeLimit
         {
             // in milliseconds
-            Default = 300000,    // 5분
+            Default = 180000,    // 3분
             Hard = 180000        // 3분
         }
 
         public MinigameWindow(MapSize difficulty)
         {
             InitializeComponent();
+            //AllocConsole(); // Creates a console window
 
             // 성장도에 따른 미로 크기, 시간 제한 설정
             mazeSize = (int)difficulty;
@@ -76,13 +82,17 @@ namespace asl_project
 
             charPosX = maze.SpawnX;
             charPosY = maze.SpawnY;
-            System.Diagnostics.Debug.WriteLine("Spawn Point is " + charPosX.ToString() + ", " + charPosY.ToString());
 
             // 창 크기 변경시 화면 다시 그리기
             this.Resize += (s, e) => panelMazeView.Invalidate();
 
             // 화면 깜박거림 방지
-            this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            typeof(Panel)
+                .GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
+                ?.SetValue(panelMazeView, true, null);
+            //typeof(System.Windows.Forms.ProgressBar)
+            //    .GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
+            //    ?.SetValue(progressBarTime, true, null);
 
             // 미니게임 결과 초기화
             MinigameResult = false;
@@ -112,7 +122,7 @@ namespace asl_project
                 {
                     int x = col * gridSize + offsetX;
                     int y = row * gridSize; // + progressBarTime.Height;
-                    if (maze.GetMazeTile(row, col) == MazeTileType.Wall)
+                    if (maze.GetMazeTile(col, row) == MazeTileType.Wall)
                         g.DrawImage(wallImage, new Rectangle(x, y, gridSize, gridSize));
                     else
                         g.DrawImage(groundImage, new Rectangle(x, y, gridSize, gridSize));
@@ -133,6 +143,86 @@ namespace asl_project
             //else progressBarTime.Value -= tmr100Millisecond.Interval;
             progressBarTime.PerformStep();
             if (progressBarTime.Value == 0) this.Close();
+        }
+
+        private bool IsAtDest()
+        {
+            if ((charPosX, charPosY) == (maze.DestX, maze.DestY)) return true;
+            else return false;
+        }
+
+        private bool IsValidMovement(int offsetX, int offsetY)
+        {
+            int moveDestX = charPosX + offsetX;
+            int moveDestY = charPosY + offsetY;
+
+            Console.WriteLine(maze.GetMazeTile(moveDestX, moveDestY).ToString());
+
+            // check if movement destination is even within bound (unlikely)
+            if (moveDestX <= 0 || moveDestX >= maze.Width - 1 || moveDestY <= 0 || moveDestY >= maze.Height - 1) return false;
+            // check if movement destination is a wall
+            else if (maze.GetMazeTile(moveDestX, moveDestY) == MazeTileType.Wall) return false;
+            else return true;
+        }
+
+        private void MinigameWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            // 화면 사이즈에 따른 타일 크기
+            int gridSize = Math.Min(panelMazeView.Width, panelMazeView.Height - progressBarTime.Height) / mazeSize;
+
+            // 수평 중앙 오프셋
+            int offsetX = (panelMazeView.Width - gridSize * mazeSize) / 2;
+
+            Rectangle regionToUpdate;
+
+            switch (e.KeyCode)
+            {
+                case (Keys.Up):
+                    if (IsValidMovement(0, -1))
+                    {
+                        charPosY -= 1;
+                        regionToUpdate = new Rectangle(charPosX * gridSize + offsetX, charPosY * gridSize, gridSize, gridSize * 2);
+                        panelMazeView.Invalidate(regionToUpdate);
+                    }
+                    break;
+                case (Keys.Down):
+                    if (IsValidMovement(0, 1))
+                    {
+                        charPosY += 1;
+                        regionToUpdate = new Rectangle(charPosX * gridSize + offsetX, charPosY * gridSize - gridSize, gridSize, gridSize * 2);
+                        panelMazeView.Invalidate(regionToUpdate);
+                    }
+                    break;
+                case (Keys.Left):
+                    if (IsValidMovement(-1, 0))
+                    {
+                        charPosX -= 1;
+                        regionToUpdate = new Rectangle(charPosX * gridSize + offsetX, charPosY * gridSize, gridSize * 2, gridSize);
+                        panelMazeView.Invalidate(regionToUpdate);
+                    }
+                    break;
+                case (Keys.Right):
+                    if (IsValidMovement(1, 0))
+                    {
+                        charPosX += 1;
+                        regionToUpdate = new Rectangle(charPosX * gridSize + offsetX - gridSize, charPosY * gridSize, gridSize * 2, gridSize);
+                        panelMazeView.Invalidate(regionToUpdate);
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            Console.WriteLine("Character at   " + charPosX.ToString() + ", " + charPosY.ToString());
+
+            if (IsAtDest())
+            {
+                MinigameResult = true;
+                if (MessageBox.Show("산책을 성공적으로 마쳤습니다!", "산책 성공", MessageBoxButtons.OK) == DialogResult.OK)
+                {
+                    this.Close();
+                }
+            }
         }
 
         private void MinigameWindow_FormClosing(object sender, FormClosingEventArgs e)

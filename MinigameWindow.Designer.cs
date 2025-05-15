@@ -72,6 +72,7 @@
             this.Text = "산책";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MinigameWindow_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MinigameWindow_KeyDown);
             this.ResumeLayout(false);
 
         }
