@@ -27,6 +27,8 @@ namespace asl_project
         private string characterName;
         private int foodCount = 0;
 
+        private int adultCharacterIndex = 0; // 캐릭터 종류
+
         private growState grow_state; //현재 성장 상태를 저장하는 변수 (유아기: BABY, 청년기: CHILD, 성년기: ADULT)
         private bool sleeping;
         public List<Label> Foodlabels;
@@ -73,6 +75,8 @@ namespace asl_project
                 sleeping = Properties.Settings.Default.exitSleeping;
                 grow_state = (growState)Properties.Settings.Default.GrowState;
                 characterName = Properties.Settings.Default.Name;
+
+                adultCharacterIndex = Properties.Settings.Default.AdultCharacterIndex;
 
                 DateTime exitTime = Properties.Settings.Default.exitTime;
                 if (exitTime > new DateTime(2000, 1, 1)) //저장해둔 내용이 있다면
@@ -132,6 +136,7 @@ namespace asl_project
             pgbST.Value = stat_stress;
             pgbGrow.Value = (int)stat_grow;
 
+
             change_ch_image();
 
             if (!restart && (stat_hungry + stat_tired + stat_stress > 250)) die();
@@ -157,7 +162,15 @@ namespace asl_project
                         break;
 
                     case growState.ADULT:
-                        characterPBX.Image = Properties.Resources.sleeping2;
+                        switch (adultCharacterIndex)
+                        {
+                            case 0:
+                                characterPBX.Image = Properties.Resources.sleeping2;
+                                break;
+                            case 1:
+                                characterPBX.Image = Properties.Resources.sleepingch2;
+                                break;
+                        }
                         break;
 
                     default:
@@ -178,8 +191,17 @@ namespace asl_project
                         break;
 
                     case growState.ADULT:
-                        characterPBX.Image = Properties.Resources.ch2;
+                        switch (adultCharacterIndex)
+                        {
+                            case 0:
+                                characterPBX.Image = Properties.Resources.ch2_1;
+                                break;
+                            case 1:
+                                characterPBX.Image = Properties.Resources.ch2_2;
+                                break;
+                        }
                         break;
+
 
                     default:
                         characterPBX.Image = null;
@@ -278,7 +300,19 @@ namespace asl_project
                 else if (grow_state == growState.CHILD)
                 {
                     grow_state = growState.ADULT;
-                    characterPBX.Image = Properties.Resources.ch2;
+                    Random rand = new Random();
+                    adultCharacterIndex = rand.Next(2);
+                    
+                    switch (adultCharacterIndex)
+                    {
+                        case 0:
+                            characterPBX.Image = Properties.Resources.ch2_1;
+                            break;
+                        case 1:
+                            characterPBX.Image = Properties.Resources.ch2_2;
+                            break;
+                    }
+
                     stat_grow = 0;
 
                 }
@@ -341,9 +375,19 @@ namespace asl_project
                         break;
 
                     case growState.ADULT:
-                        eatingNoodlech.Image = Properties.Resources.eatingNoodlech;
-                        eatingRicech.Image = Properties.Resources.eatingRicech;
+                        switch (adultCharacterIndex)
+                        {
+                            case 0:
+                                eatingNoodlech.Image = Properties.Resources.eatingNoodlech;
+                                eatingRicech.Image = Properties.Resources.eatingRicech;
+                                break;
+                            case 1:
+                                eatingNoodlech.Image = Properties.Resources.eatingNoodlech2;
+                                eatingRicech.Image = Properties.Resources.eatingRicech2;
+                                break;
+                        }
                         break;
+
 
                     default:
                         characterPBX.Image = null;
@@ -515,6 +559,7 @@ namespace asl_project
             Properties.Settings.Default.Name = characterName;
             Properties.Settings.Default.GrowState = (int)grow_state;
             Properties.Settings.Default.exitSleeping = sleeping;
+            Properties.Settings.Default.AdultCharacterIndex = adultCharacterIndex;
 
             Properties.Settings.Default.Save();
         }

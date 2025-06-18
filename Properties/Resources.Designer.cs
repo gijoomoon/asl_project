@@ -93,9 +93,19 @@ namespace asl_project.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap ch2 {
+        internal static System.Drawing.Bitmap ch2_1 {
             get {
-                object obj = ResourceManager.GetObject("ch2", resourceCulture);
+                object obj = ResourceManager.GetObject("ch2_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap ch2_2 {
+            get {
+                object obj = ResourceManager.GetObject("ch2_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,9 +183,29 @@ namespace asl_project.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap eatingNoodlech2 {
+            get {
+                object obj = ResourceManager.GetObject("eatingNoodlech2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap eatingRicech {
             get {
                 object obj = ResourceManager.GetObject("eatingRicech", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap eatingRicech2 {
+            get {
+                object obj = ResourceManager.GetObject("eatingRicech2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -256,6 +286,16 @@ namespace asl_project.Properties {
         internal static System.Drawing.Bitmap sleeping2 {
             get {
                 object obj = ResourceManager.GetObject("sleeping2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap sleepingch2 {
+            get {
+                object obj = ResourceManager.GetObject("sleepingch2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

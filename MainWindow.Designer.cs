@@ -100,30 +100,27 @@
             // lbH
             // 
             this.lbH.AutoSize = true;
-            this.lbH.Location = new System.Drawing.Point(411, 25);
-            this.lbH.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbH.Location = new System.Drawing.Point(534, 33);
             this.lbH.Name = "lbH";
-            this.lbH.Size = new System.Drawing.Size(80, 18);
+            this.lbH.Size = new System.Drawing.Size(106, 24);
             this.lbH.TabIndex = 2;
             this.lbH.Text = "배고픔값";
             // 
             // lbTR
             // 
             this.lbTR.AutoSize = true;
-            this.lbTR.Location = new System.Drawing.Point(412, 63);
-            this.lbTR.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbTR.Location = new System.Drawing.Point(536, 84);
             this.lbTR.Name = "lbTR";
-            this.lbTR.Size = new System.Drawing.Size(80, 18);
+            this.lbTR.Size = new System.Drawing.Size(106, 24);
             this.lbTR.TabIndex = 3;
             this.lbTR.Text = "피로도값";
             // 
             // lbST
             // 
             this.lbST.AutoSize = true;
-            this.lbST.Location = new System.Drawing.Point(411, 105);
-            this.lbST.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbST.Location = new System.Drawing.Point(534, 140);
             this.lbST.Name = "lbST";
-            this.lbST.Size = new System.Drawing.Size(98, 18);
+            this.lbST.Size = new System.Drawing.Size(130, 24);
             this.lbST.TabIndex = 4;
             this.lbST.Text = "스트레스값";
             // 
@@ -131,10 +128,10 @@
             // 
             this.pgbH.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pgbH.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.pgbH.Location = new System.Drawing.Point(488, 22);
-            this.pgbH.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pgbH.Location = new System.Drawing.Point(634, 29);
+            this.pgbH.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pgbH.Name = "pgbH";
-            this.pgbH.Size = new System.Drawing.Size(166, 22);
+            this.pgbH.Size = new System.Drawing.Size(216, 29);
             this.pgbH.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.pgbH.TabIndex = 6;
             // 
@@ -142,10 +139,10 @@
             // 
             this.pgbTR.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pgbTR.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.pgbTR.Location = new System.Drawing.Point(488, 63);
-            this.pgbTR.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pgbTR.Location = new System.Drawing.Point(634, 84);
+            this.pgbTR.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pgbTR.Name = "pgbTR";
-            this.pgbTR.Size = new System.Drawing.Size(166, 22);
+            this.pgbTR.Size = new System.Drawing.Size(216, 29);
             this.pgbTR.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.pgbTR.TabIndex = 7;
             // 
@@ -153,50 +150,46 @@
             // 
             this.pgbST.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pgbST.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.pgbST.Location = new System.Drawing.Point(488, 105);
-            this.pgbST.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pgbST.Location = new System.Drawing.Point(634, 140);
+            this.pgbST.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pgbST.Name = "pgbST";
-            this.pgbST.Size = new System.Drawing.Size(166, 22);
+            this.pgbST.Size = new System.Drawing.Size(216, 29);
             this.pgbST.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.pgbST.TabIndex = 8;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(341, 22);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(443, 29);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 18);
+            this.label1.Size = new System.Drawing.Size(82, 24);
             this.label1.TabIndex = 10;
             this.label1.Text = "배고픔";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(341, 63);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(443, 84);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 18);
+            this.label2.Size = new System.Drawing.Size(82, 24);
             this.label2.TabIndex = 11;
             this.label2.Text = "피로도";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(328, 105);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(426, 140);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 18);
+            this.label3.Size = new System.Drawing.Size(106, 24);
             this.label3.TabIndex = 12;
             this.label3.Text = "스트레스";
             // 
             // withRicelbl
             // 
             this.withRicelbl.AutoSize = true;
-            this.withRicelbl.Location = new System.Drawing.Point(172, 282);
-            this.withRicelbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.withRicelbl.Location = new System.Drawing.Point(224, 376);
             this.withRicelbl.Name = "withRicelbl";
-            this.withRicelbl.Size = new System.Drawing.Size(26, 18);
+            this.withRicelbl.Size = new System.Drawing.Size(34, 24);
             this.withRicelbl.TabIndex = 21;
             this.withRicelbl.Text = "▶";
             this.withRicelbl.Visible = false;
@@ -204,10 +197,9 @@
             // withNoodlelbl
             // 
             this.withNoodlelbl.AutoSize = true;
-            this.withNoodlelbl.Location = new System.Drawing.Point(172, 390);
-            this.withNoodlelbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.withNoodlelbl.Location = new System.Drawing.Point(224, 520);
             this.withNoodlelbl.Name = "withNoodlelbl";
-            this.withNoodlelbl.Size = new System.Drawing.Size(26, 18);
+            this.withNoodlelbl.Size = new System.Drawing.Size(34, 24);
             this.withNoodlelbl.TabIndex = 25;
             this.withNoodlelbl.Text = "▶";
             this.withNoodlelbl.Visible = false;
@@ -215,60 +207,57 @@
             // label4
             // 
             this.label4.BackColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(-1, 465);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(-1, 620);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(680, 9);
+            this.label4.Size = new System.Drawing.Size(884, 12);
             this.label4.TabIndex = 28;
             // 
             // pgbGrow
             // 
             this.pgbGrow.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pgbGrow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.pgbGrow.Location = new System.Drawing.Point(19, 151);
-            this.pgbGrow.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pgbGrow.Location = new System.Drawing.Point(25, 201);
+            this.pgbGrow.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pgbGrow.Name = "pgbGrow";
-            this.pgbGrow.Size = new System.Drawing.Size(166, 22);
+            this.pgbGrow.Size = new System.Drawing.Size(216, 29);
             this.pgbGrow.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.pgbGrow.TabIndex = 5;
             // 
             // lbGrow
             // 
             this.lbGrow.AutoSize = true;
-            this.lbGrow.Location = new System.Drawing.Point(105, 119);
-            this.lbGrow.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbGrow.Location = new System.Drawing.Point(136, 159);
             this.lbGrow.Name = "lbGrow";
-            this.lbGrow.Size = new System.Drawing.Size(80, 18);
+            this.lbGrow.Size = new System.Drawing.Size(106, 24);
             this.lbGrow.TabIndex = 1;
             this.lbGrow.Text = "성장률값";
             // 
             // lbGrowState
             // 
             this.lbGrowState.AutoSize = true;
-            this.lbGrowState.Location = new System.Drawing.Point(16, 119);
-            this.lbGrowState.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbGrowState.Location = new System.Drawing.Point(21, 159);
             this.lbGrowState.Name = "lbGrowState";
-            this.lbGrowState.Size = new System.Drawing.Size(44, 18);
+            this.lbGrowState.Size = new System.Drawing.Size(58, 24);
             this.lbGrowState.TabIndex = 9;
             this.lbGrowState.Text = "유아";
             // 
             // ddongPBX
             // 
             this.ddongPBX.Image = global::asl_project.Properties.Resources.dd;
-            this.ddongPBX.Location = new System.Drawing.Point(418, 408);
-            this.ddongPBX.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.ddongPBX.Location = new System.Drawing.Point(543, 544);
+            this.ddongPBX.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ddongPBX.Name = "ddongPBX";
-            this.ddongPBX.Size = new System.Drawing.Size(40, 40);
+            this.ddongPBX.Size = new System.Drawing.Size(52, 53);
             this.ddongPBX.TabIndex = 29;
             this.ddongPBX.TabStop = false;
             // 
             // statusButton
             // 
             this.statusButton.Image = global::asl_project.Properties.Resources.status;
-            this.statusButton.Location = new System.Drawing.Point(12, 12);
-            this.statusButton.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.statusButton.Location = new System.Drawing.Point(16, 16);
+            this.statusButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.statusButton.Name = "statusButton";
-            this.statusButton.Size = new System.Drawing.Size(90, 90);
+            this.statusButton.Size = new System.Drawing.Size(117, 120);
             this.statusButton.TabIndex = 27;
             this.statusButton.UseVisualStyleBackColor = true;
             this.statusButton.Click += new System.EventHandler(this.button1_Click);
@@ -276,11 +265,10 @@
             // eatingNoodlech
             // 
             this.eatingNoodlech.BackColor = System.Drawing.SystemColors.Control;
-            this.eatingNoodlech.Image = global::asl_project.Properties.Resources.eatingNoodlech;
-            this.eatingNoodlech.Location = new System.Drawing.Point(245, 290);
-            this.eatingNoodlech.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.eatingNoodlech.Location = new System.Drawing.Point(318, 387);
+            this.eatingNoodlech.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.eatingNoodlech.Name = "eatingNoodlech";
-            this.eatingNoodlech.Size = new System.Drawing.Size(198, 201);
+            this.eatingNoodlech.Size = new System.Drawing.Size(257, 268);
             this.eatingNoodlech.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.eatingNoodlech.TabIndex = 26;
             this.eatingNoodlech.TabStop = false;
@@ -289,10 +277,9 @@
             // NoodlePBX
             // 
             this.NoodlePBX.Image = global::asl_project.Properties.Resources.Noodle;
-            this.NoodlePBX.Location = new System.Drawing.Point(48, 352);
-            this.NoodlePBX.Margin = new System.Windows.Forms.Padding(2);
+            this.NoodlePBX.Location = new System.Drawing.Point(62, 469);
             this.NoodlePBX.Name = "NoodlePBX";
-            this.NoodlePBX.Size = new System.Drawing.Size(100, 98);
+            this.NoodlePBX.Size = new System.Drawing.Size(130, 131);
             this.NoodlePBX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.NoodlePBX.TabIndex = 24;
             this.NoodlePBX.TabStop = false;
@@ -302,10 +289,10 @@
             // 
             this.eatingRicech.BackColor = System.Drawing.SystemColors.Control;
             this.eatingRicech.Image = global::asl_project.Properties.Resources.eatingRicech;
-            this.eatingRicech.Location = new System.Drawing.Point(245, 290);
-            this.eatingRicech.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.eatingRicech.Location = new System.Drawing.Point(318, 387);
+            this.eatingRicech.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.eatingRicech.Name = "eatingRicech";
-            this.eatingRicech.Size = new System.Drawing.Size(198, 201);
+            this.eatingRicech.Size = new System.Drawing.Size(257, 268);
             this.eatingRicech.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.eatingRicech.TabIndex = 23;
             this.eatingRicech.TabStop = false;
@@ -313,11 +300,11 @@
             // 
             // characterPBX
             // 
-            this.characterPBX.Image = global::asl_project.Properties.Resources.ch2;
-            this.characterPBX.Location = new System.Drawing.Point(245, 290);
-            this.characterPBX.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.characterPBX.Image = global::asl_project.Properties.Resources.ch2_1;
+            this.characterPBX.Location = new System.Drawing.Point(318, 387);
+            this.characterPBX.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.characterPBX.Name = "characterPBX";
-            this.characterPBX.Size = new System.Drawing.Size(198, 201);
+            this.characterPBX.Size = new System.Drawing.Size(257, 268);
             this.characterPBX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.characterPBX.TabIndex = 22;
             this.characterPBX.TabStop = false;
@@ -325,10 +312,9 @@
             // RicePBX
             // 
             this.RicePBX.Image = global::asl_project.Properties.Resources.Rice;
-            this.RicePBX.Location = new System.Drawing.Point(48, 237);
-            this.RicePBX.Margin = new System.Windows.Forms.Padding(2);
+            this.RicePBX.Location = new System.Drawing.Point(62, 316);
             this.RicePBX.Name = "RicePBX";
-            this.RicePBX.Size = new System.Drawing.Size(100, 98);
+            this.RicePBX.Size = new System.Drawing.Size(130, 131);
             this.RicePBX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.RicePBX.TabIndex = 20;
             this.RicePBX.TabStop = false;
@@ -337,10 +323,9 @@
             // clearPBX
             // 
             this.clearPBX.Image = ((System.Drawing.Image)(resources.GetObject("clearPBX.Image")));
-            this.clearPBX.Location = new System.Drawing.Point(522, 500);
-            this.clearPBX.Margin = new System.Windows.Forms.Padding(2);
+            this.clearPBX.Location = new System.Drawing.Point(679, 667);
             this.clearPBX.Name = "clearPBX";
-            this.clearPBX.Size = new System.Drawing.Size(108, 105);
+            this.clearPBX.Size = new System.Drawing.Size(140, 140);
             this.clearPBX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.clearPBX.TabIndex = 19;
             this.clearPBX.TabStop = false;
@@ -349,10 +334,9 @@
             // gamePBX
             // 
             this.gamePBX.Image = global::asl_project.Properties.Resources.ggame;
-            this.gamePBX.Location = new System.Drawing.Point(368, 500);
-            this.gamePBX.Margin = new System.Windows.Forms.Padding(2);
+            this.gamePBX.Location = new System.Drawing.Point(478, 667);
             this.gamePBX.Name = "gamePBX";
-            this.gamePBX.Size = new System.Drawing.Size(108, 105);
+            this.gamePBX.Size = new System.Drawing.Size(140, 140);
             this.gamePBX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gamePBX.TabIndex = 18;
             this.gamePBX.TabStop = false;
@@ -361,10 +345,9 @@
             // SleepingPBX
             // 
             this.SleepingPBX.Image = global::asl_project.Properties.Resources.btn_sleep;
-            this.SleepingPBX.Location = new System.Drawing.Point(212, 500);
-            this.SleepingPBX.Margin = new System.Windows.Forms.Padding(2);
+            this.SleepingPBX.Location = new System.Drawing.Point(276, 667);
             this.SleepingPBX.Name = "SleepingPBX";
-            this.SleepingPBX.Size = new System.Drawing.Size(108, 105);
+            this.SleepingPBX.Size = new System.Drawing.Size(140, 140);
             this.SleepingPBX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.SleepingPBX.TabIndex = 17;
             this.SleepingPBX.TabStop = false;
@@ -372,8 +355,7 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Location = new System.Drawing.Point(499, 452);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox4.Location = new System.Drawing.Point(649, 603);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(0, 0);
             this.pictureBox4.TabIndex = 16;
@@ -381,8 +363,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(352, 452);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox3.Location = new System.Drawing.Point(458, 603);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(0, 0);
             this.pictureBox3.TabIndex = 15;
@@ -390,8 +371,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(212, 452);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox2.Location = new System.Drawing.Point(276, 603);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(0, 0);
             this.pictureBox2.TabIndex = 14;
@@ -400,10 +380,9 @@
             // EatingPBX
             // 
             this.EatingPBX.Image = global::asl_project.Properties.Resources.food;
-            this.EatingPBX.Location = new System.Drawing.Point(48, 500);
-            this.EatingPBX.Margin = new System.Windows.Forms.Padding(2);
+            this.EatingPBX.Location = new System.Drawing.Point(62, 667);
             this.EatingPBX.Name = "EatingPBX";
-            this.EatingPBX.Size = new System.Drawing.Size(108, 105);
+            this.EatingPBX.Size = new System.Drawing.Size(140, 140);
             this.EatingPBX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.EatingPBX.TabIndex = 13;
             this.EatingPBX.TabStop = false;
@@ -411,9 +390,9 @@
             // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(678, 644);
+            this.ClientSize = new System.Drawing.Size(881, 859);
             this.Controls.Add(this.ddongPBX);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.statusButton);
@@ -443,7 +422,7 @@
             this.Controls.Add(this.lbTR);
             this.Controls.Add(this.lbH);
             this.Controls.Add(this.lbGrow);
-            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainWindow";
             this.Text = "마스다치";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
