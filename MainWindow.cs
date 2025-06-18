@@ -53,14 +53,16 @@ namespace asl_project
             if (stat_hungry < 0) stat_hungry = 0;
 
             foodCount++;
+            
             if (foodCount % 3 == 0)
             {
                 ddongPBX.Visible = true;
             }
 
             MessageBox.Show("배고픔이 10 감소하였습니다.");
-
         }
+
+
         private void init_stat(bool restart)
         {
             if (!restart) //임시로 초기화해둠, 추후 이전에 플레이하던 값 가져오는 작업 필요
@@ -409,13 +411,36 @@ namespace asl_project
             tmrTR.Start();
         }
 
+
         private void SleepingPBX_Click(object sender, EventArgs e)
         {
-            if (!sleeping) sleeping = true;
-            else sleeping = false;
+            if (stat_tired < 30)
+            {
+                MessageBox.Show("피곤하지 않습니다!");
+            }
+            else
+            {
+                // 잠자는 상태로 전환
+                sleeping = true;
+                change_ch_image();
 
-            change_ch_image();
+                Timer timer = new Timer();
+                timer.Interval = 3000; // 3초
+                timer.Tick += (s, args) =>
+                {
+                    sleeping  = false;           // 잠자는 상태 해제
+                    set_tired(-10);          // 피로도 감소
+                    change_ch_image();       // 상태에 따라 이미지 다시 설정
+
+                    timer.Stop();
+                    timer.Dispose();
+                    MessageBox.Show("피로도가 10 감소하였습니다!");
+                };
+                timer.Start();
+            }
         }
+
+
 
         private void clearPBX_Click(object sender, EventArgs e)
         {
