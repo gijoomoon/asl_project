@@ -446,6 +446,7 @@
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "MainWindow";
             this.Text = "마스다치";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.ddongPBX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eatingNoodlech)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NoodlePBX)).EndInit();

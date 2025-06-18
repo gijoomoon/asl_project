@@ -14,7 +14,7 @@ namespace asl_project
 {
     enum growState
     {
-        BABY, CHILD, ADULT
+        BABY = 0, CHILD, ADULT
     }
 
     public partial class MainWindow : Form
@@ -24,7 +24,7 @@ namespace asl_project
         private int stat_stress;
         private double stat_grow;
         private System.Windows.Forms.Button statusButton;
-        private string characterName = "다마고치";
+        private string characterName;
         private int foodCount = 0;
 
         private growState grow_state; //현재 성장 상태를 저장하는 변수 (유아기: BABY, 청년기: CHILD, 성년기: ADULT)
@@ -39,10 +39,10 @@ namespace asl_project
 
             ddongPBX.Visible = false;
             Foodlabels = new List<Label> { withNoodlelbl, withRicelbl };
-            FoodItem rice = new FoodItem(RicePBX, characterPBX, eatingRicech,  DecreaseHunger,
+            FoodItem rice = new FoodItem(RicePBX, characterPBX, eatingRicech, DecreaseHunger,
                     new List<PictureBox> { NoodlePBX }, Foodlabels);
             FoodItem noodle = new FoodItem(NoodlePBX, characterPBX, eatingNoodlech, DecreaseHunger,
-                    new List<PictureBox> { RicePBX }, Foodlabels );
+                    new List<PictureBox> { RicePBX }, Foodlabels);
 
         }
 
@@ -53,28 +53,65 @@ namespace asl_project
             if (stat_hungry < 0) stat_hungry = 0;
 
             foodCount++;
-            
             if (foodCount % 3 == 0)
             {
                 ddongPBX.Visible = true;
             }
 
             MessageBox.Show("배고픔이 10 감소하였습니다.");
-        }
 
+        }
 
         private void init_stat(bool restart)
         {
-            if (!restart) //임시로 초기화해둠, 추후 이전에 플레이하던 값 가져오는 작업 필요
+            if (!restart)
             {
-                stat_hungry = 80;
-                stat_tired = 80;
-                stat_stress = 80;
-                stat_grow = 0;
-                sleeping = false;
-                grow_state = growState.ADULT;
+                stat_hungry = Properties.Settings.Default.exitHungry;
+                stat_tired = Properties.Settings.Default.exitTired;
+                stat_stress = Properties.Settings.Default.exitStress;
+                stat_grow = Properties.Settings.Default.exitGrow;
+                sleeping = Properties.Settings.Default.exitSleeping;
+                grow_state = (growState)Properties.Settings.Default.GrowState;
+                characterName = Properties.Settings.Default.Name;
+
+                DateTime exitTime = Properties.Settings.Default.exitTime;
+                if (exitTime > new DateTime(2000, 1, 1)) //저장해둔 내용이 있다면
+                {
+                    TimeSpan diff = DateTime.Now - exitTime;
+                    double diffSec = diff.TotalSeconds;
+
+                    if (sleeping)
+                    {
+                        stat_tired -= (int)(diffSec / 30);
+                        stat_hungry += (int)(diffSec / 120);
+                        stat_stress += (int)(diffSec / 120);
+                    }
+                    else 
+                    {
+                        stat_tired += (int)(diffSec / 60);
+                        stat_hungry += (int)(diffSec / 60);
+                        stat_stress += (int)(diffSec / 60);
+                    } 
+                    
+                    stat_grow += (diffSec / 180);
+
+                    if (stat_tired > 100) stat_tired = 100;
+                    if (stat_tired < 0) stat_tired = 0;
+                    if (stat_hungry > 100) stat_hungry = 100;
+                    if (stat_stress > 100) stat_stress = 100;
+                    if (stat_grow > 100) stat_grow = 100;
+                }
+                else //처음 게임을 시작해서 초기값인 경우
+                {
+                    stat_hungry = 0;
+                    stat_tired = 0;
+                    stat_stress = 0;
+                    stat_grow = 0;
+                    sleeping = false;
+                    grow_state = growState.BABY;
+                }
             }
-            else
+            else //캐릭터가 사망해서 다시 시작하는 경우
             {
                 stat_hungry = 0;
                 stat_tired = 0;
@@ -227,6 +264,9 @@ namespace asl_project
 
         private void tmrGrow_Tick(object sender, EventArgs e)
         {
+            if (grow_state == growState.BABY) tmrH.Interval = 2400; //유아기이므로 배고픔 빠르게 증가
+            else tmrH.Interval = 4800;
+
             if (stat_grow >= 100)
             {
                 if (grow_state == growState.BABY)
@@ -240,7 +280,7 @@ namespace asl_project
                     grow_state = growState.ADULT;
                     characterPBX.Image = Properties.Resources.ch2;
                     stat_grow = 0;
-                    tmrH.Interval = 2400; //유아기에서 벗어낫으므로 배고픔 느리게 증가
+
                 }
                 else
                 {
@@ -288,6 +328,28 @@ namespace asl_project
 
             if (stat_hungry > 30)
             {
+                switch (grow_state)
+                {
+                    case growState.BABY:
+                        eatingNoodlech.Image = Properties.Resources.eating0;
+                        eatingRicech.Image = Properties.Resources.eating0;
+                        break;
+
+                    case growState.CHILD:
+                        eatingNoodlech.Image = Properties.Resources.eating1;
+                        eatingRicech.Image = Properties.Resources.eating1;
+                        break;
+
+                    case growState.ADULT:
+                        eatingNoodlech.Image = Properties.Resources.eatingNoodlech;
+                        eatingRicech.Image = Properties.Resources.eatingRicech;
+                        break;
+
+                    default:
+                        characterPBX.Image = null;
+                        break;
+                }
+
                 RicePBX.Visible = true;
                 NoodlePBX.Visible = true;
                 withNoodlelbl.Visible = true;
@@ -385,7 +447,8 @@ namespace asl_project
 
         private void gamePBX_Click(object sender, EventArgs e)
         {
-            if (sleeping) {
+            if (sleeping)
+            {
                 MessageBox.Show("자는 중입니다.");
                 return;
             }
@@ -411,36 +474,13 @@ namespace asl_project
             tmrTR.Start();
         }
 
-
         private void SleepingPBX_Click(object sender, EventArgs e)
         {
-            if (stat_tired < 30)
-            {
-                MessageBox.Show("피곤하지 않습니다!");
-            }
-            else
-            {
-                // 잠자는 상태로 전환
-                sleeping = true;
-                change_ch_image();
+            if (!sleeping) sleeping = true;
+            else sleeping = false;
 
-                Timer timer = new Timer();
-                timer.Interval = 3000; // 3초
-                timer.Tick += (s, args) =>
-                {
-                    sleeping  = false;           // 잠자는 상태 해제
-                    set_tired(-10);          // 피로도 감소
-                    change_ch_image();       // 상태에 따라 이미지 다시 설정
-
-                    timer.Stop();
-                    timer.Dispose();
-                    MessageBox.Show("피로도가 10 감소하였습니다!");
-                };
-                timer.Start();
-            }
+            change_ch_image();
         }
-
-
 
         private void clearPBX_Click(object sender, EventArgs e)
         {
@@ -455,6 +495,21 @@ namespace asl_project
                 MessageBox.Show("청소할 것이 없습니다.");
             }
         }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.exitTime = DateTime.Now;
+            Properties.Settings.Default.exitHungry = stat_hungry;
+            Properties.Settings.Default.exitTired = stat_tired;
+            Properties.Settings.Default.exitStress = stat_stress;
+            Properties.Settings.Default.exitGrow = stat_grow;
+            Properties.Settings.Default.Name = characterName;
+            Properties.Settings.Default.GrowState = (int)grow_state;
+            Properties.Settings.Default.exitSleeping = sleeping;
+
+            Properties.Settings.Default.Save();
+        }
+
     }
 }
 
