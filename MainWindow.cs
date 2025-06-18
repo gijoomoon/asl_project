@@ -82,18 +82,18 @@ namespace asl_project
 
                     if (sleeping)
                     {
-                        stat_tired -= (int)(diffSec / 30);
-                        stat_hungry += (int)(diffSec / 120);
-                        stat_stress += (int)(diffSec / 120);
+                        stat_tired -= (int)(diffSec / 240);
+                        stat_hungry += (int)(diffSec / 360);
+                        stat_stress += (int)(diffSec / 360);
                     }
                     else 
                     {
-                        stat_tired += (int)(diffSec / 60);
-                        stat_hungry += (int)(diffSec / 60);
-                        stat_stress += (int)(diffSec / 60);
+                        stat_tired += (int)(diffSec / 240);
+                        stat_hungry += (int)(diffSec / 360);
+                        stat_stress += (int)(diffSec / 360);
                     } 
                     
-                    stat_grow += (diffSec / 180);
+                    stat_grow += (diffSec / 600);
 
                     if (stat_tired > 100) stat_tired = 100;
                     if (stat_tired < 0) stat_tired = 0;
@@ -476,8 +476,17 @@ namespace asl_project
 
         private void SleepingPBX_Click(object sender, EventArgs e)
         {
-            if (!sleeping) sleeping = true;
-            else sleeping = false;
+            if (!sleeping) {
+                sleeping = true;
+                tmrH.Stop();
+                tmrST.Stop();
+            } 
+            else 
+            {
+                sleeping = false;
+                tmrH.Start();
+                tmrST.Start();
+            } 
 
             change_ch_image();
         }
