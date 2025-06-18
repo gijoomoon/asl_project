@@ -25,6 +25,7 @@ namespace asl_project
         private double stat_grow;
         private System.Windows.Forms.Button statusButton;
         private string characterName = "다마고치";
+        private int foodCount = 0;
 
         private growState grow_state; //현재 성장 상태를 저장하는 변수 (유아기: BABY, 청년기: CHILD, 성년기: ADULT)
         private bool sleeping;
@@ -36,7 +37,7 @@ namespace asl_project
             InitializeComponent();
             init_stat(false);
 
-
+            ddongPBX.Visible = false;
             Foodlabels = new List<Label> { withNoodlelbl, withRicelbl };
             FoodItem rice = new FoodItem(RicePBX, characterPBX, eatingRicech,  DecreaseHunger,
                     new List<PictureBox> { NoodlePBX }, Foodlabels);
@@ -49,6 +50,14 @@ namespace asl_project
         private void DecreaseHunger()
         {
             stat_hungry -= 10;
+            if (stat_hungry < 0) stat_hungry = 0;
+
+            foodCount++;
+            if (foodCount % 3 == 0)
+            {
+                ddongPBX.Visible = true;
+            }
+
             MessageBox.Show("배고픔이 10 감소하였습니다.");
 
         }
@@ -408,6 +417,19 @@ namespace asl_project
             change_ch_image();
         }
 
+        private void clearPBX_Click(object sender, EventArgs e)
+        {
+            if (ddongPBX.Visible)
+            {
+                ddongPBX.Visible = false;
+                set_stress(-10);
+                MessageBox.Show("청소 완료! 스트레스가 10 감소했습니다.");
+            }
+            else
+            {
+                MessageBox.Show("청소할 것이 없습니다.");
+            }
+        }
     }
 }
 

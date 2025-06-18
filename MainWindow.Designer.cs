@@ -344,6 +344,7 @@
             this.clearPBX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.clearPBX.TabIndex = 19;
             this.clearPBX.TabStop = false;
+            this.clearPBX.Click += new System.EventHandler(this.clearPBX_Click);
             // 
             // gamePBX
             // 
