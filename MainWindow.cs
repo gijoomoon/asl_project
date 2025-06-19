@@ -298,6 +298,11 @@ namespace asl_project
             stat_hungry++;
             lbH.Text = stat_hungry.ToString();
             pgbH.Value = stat_hungry;
+            
+            if (stat_hungry > 70 && stat_hungry % 10 == 0)
+            {
+                trayIcon.ShowBalloonTip(1000, "케어가 필요해요", "허기를 관리해주세요", ToolTipIcon.Warning);
+            }
         }
 
         private void tmrTR_Tick(object sender, EventArgs e)
@@ -307,6 +312,11 @@ namespace asl_project
             else stat_tired--;
             lbTR.Text = stat_tired.ToString();
             pgbTR.Value = stat_tired;
+
+            if (stat_tired > 70 && stat_tired % 10 == 0)
+            {
+                trayIcon.ShowBalloonTip(1000, "케어가 필요해요", "피로를 관리해주세요", ToolTipIcon.Warning);
+            }
         }
 
         private void tmrST_Tick(object sender, EventArgs e)
@@ -315,6 +325,11 @@ namespace asl_project
             stat_stress++;
             lbST.Text = stat_stress.ToString();
             pgbST.Value = stat_stress;
+
+            if (stat_stress > 70 && stat_stress % 10 == 0)
+            {
+                trayIcon.ShowBalloonTip(1000, "케어가 필요해요", "스트레스를 관리해주세요", ToolTipIcon.Warning);
+            }
         }
 
         private void tmrGrow_Tick(object sender, EventArgs e)
@@ -617,7 +632,7 @@ namespace asl_project
             {
                 e.Cancel = true;         // Cancel the close
                 this.Hide();             // Hide the form
-                trayIcon.ShowBalloonTip(1000, "Still Running", "The app is minimized to tray.", ToolTipIcon.Info);
+                trayIcon.ShowBalloonTip(1000, "백그라운드에서 실행 중", "시스템 트레이로 최소화 되었습니다.", ToolTipIcon.Info);
             }
             else
             {
