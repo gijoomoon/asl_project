@@ -393,8 +393,8 @@ namespace asl_project
 
             if (stat_grow >= 100)
             {
-                //자는 도중에 진화되면 잠에서 깨도록 설정
-                if (sleeping) 
+                //자는 도중에 진화되면 잠에서 깨도록 설정 (성년기에선 진화가 더이상 되지 않으므로 제외)
+                if (sleeping && grow_state != growState.ADULT) 
                 { 
                     sleeping = false;
                     tmrH.Start();
@@ -445,7 +445,7 @@ namespace asl_project
                 }
                 else
                 {
-                    //nothing
+                    //이미 성년기면 아무것도 하지 않음
                 }
 
                 lbGrowState.Text = get_state_string(grow_state);
@@ -453,6 +453,7 @@ namespace asl_project
             else
             {
                 stat_grow += 0.03;
+                //stat_grow += 1; //테스트 용도
             }
 
             lbGrow.Text = ((int)stat_grow).ToString() + "%";
@@ -461,6 +462,7 @@ namespace asl_project
 
             //사망 시스템
             if ((stat_hungry + stat_tired + stat_stress) >= 250) die();
+            //if ((stat_hungry + stat_tired + stat_stress) >= 50) die(); //테스트 용도
         }
 
         private void die()
@@ -486,7 +488,7 @@ namespace asl_project
                 return;
             }
 
-            if (stat_hungry > 30)
+            if (stat_hungry > 20)
             {
                 switch (grow_state)
                 {
@@ -512,7 +514,6 @@ namespace asl_project
                                 break;
                         }
                         break;
-                        
 
                     case growState.ADULT:
                         switch (adultCharacterIndex)
