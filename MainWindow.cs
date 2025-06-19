@@ -552,7 +552,7 @@ namespace asl_project
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
             Properties.Settings.Default.exitTime = DateTime.Now;
-            Properties.Settings.Default.exitHungry = stat_hungry;
+            Properties.Settings.Default.exitHungry = stat_hungry; 
             Properties.Settings.Default.exitTired = stat_tired;
             Properties.Settings.Default.exitStress = stat_stress;
             Properties.Settings.Default.exitGrow = stat_grow;
