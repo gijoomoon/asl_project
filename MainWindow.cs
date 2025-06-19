@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-
 namespace asl_project
 {
     enum growState
@@ -34,6 +33,9 @@ namespace asl_project
         public List<Label> Foodlabels;
 
 
+        private NotifyIcon trayIcon;
+        private ContextMenu trayMenu;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -46,8 +48,39 @@ namespace asl_project
             FoodItem noodle = new FoodItem(NoodlePBX, characterPBX, eatingNoodlech, DecreaseHunger,
                     new List<PictureBox> { RicePBX }, Foodlabels);
 
+            InitializeTrayIcon();
         }
 
+        private void InitializeTrayIcon()
+        {
+            trayMenu = new ContextMenu();
+            trayMenu.MenuItems.Add("Open", SysTrayOnOpen);
+            trayMenu.MenuItems.Add("Exit", SysTrayOnExit);
+
+            trayIcon = new NotifyIcon();
+            trayIcon.Icon = SystemIcons.Application;
+            trayIcon.Visible = true;
+            trayIcon.ContextMenu = trayMenu;
+
+            trayIcon.DoubleClick += SysTrayOnOpen;
+        }
+
+        // Restore the window
+        private void SysTrayOnOpen(object sender, EventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        // Exit the app
+        private void SysTrayOnExit(object sender, EventArgs e)
+        {
+            trayIcon.Visible = false; // Hide tray icon
+
+            SaveData();
+
+            Application.Exit();
+        }
 
         private void DecreaseHunger()
         {
@@ -549,10 +582,24 @@ namespace asl_project
             }
         }
 
-        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;         // Cancel the close
+                this.Hide();             // Hide the form
+                trayIcon.ShowBalloonTip(1000, "Still Running", "The app is minimized to tray.", ToolTipIcon.Info);
+            }
+            else
+            {
+                base.OnFormClosing(e);  // Let it close for other reasons (e.g. Application.Exit)
+            }
+        }
+
+        private void SaveData()
         {
             Properties.Settings.Default.exitTime = DateTime.Now;
-            Properties.Settings.Default.exitHungry = stat_hungry; 
+            Properties.Settings.Default.exitHungry = stat_hungry;
             Properties.Settings.Default.exitTired = stat_tired;
             Properties.Settings.Default.exitStress = stat_stress;
             Properties.Settings.Default.exitGrow = stat_grow;
@@ -564,6 +611,19 @@ namespace asl_project
             Properties.Settings.Default.Save();
         }
 
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;         // Cancel the close
+                this.Hide();             // Hide the form
+                trayIcon.ShowBalloonTip(1000, "Still Running", "The app is minimized to tray.", ToolTipIcon.Info);
+            }
+            else
+            {
+                SaveData();
+            }
+        }
     }
 }
 
