@@ -264,7 +264,7 @@
             // 
             // statusButton
             // 
-            this.statusButton.Image = global::asl_project.Properties.Resources.status;
+            this.statusButton.Image = global::asl_project.Properties.Resources.status1;
             this.statusButton.Location = new System.Drawing.Point(12, 12);
             this.statusButton.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.statusButton.Name = "statusButton";

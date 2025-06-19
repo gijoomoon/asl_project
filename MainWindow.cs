@@ -182,6 +182,27 @@ namespace asl_project
 
         private void change_ch_image()
         {
+            //상태창 버튼 이미지 변경
+            if(grow_state == growState.BABY)
+            {
+                statusButton.Image = Properties.Resources.status0;
+            }
+            else
+            {
+                switch (adultCharacterIndex)
+                {
+                    case 0:
+                        statusButton.Image = Properties.Resources.status1;
+                        break;
+                    case 1:
+                        statusButton.Image = Properties.Resources.status2;
+                        break;
+                    case 2:
+                        statusButton.Image = Properties.Resources.status3;
+                        break;
+                }
+            }
+
             if (sleeping)
             {
                 switch (grow_state)
@@ -202,9 +223,7 @@ namespace asl_project
                             case 2:
                                 characterPBX.Image = Properties.Resources.ch4_4;
                                 break;
-
                         }
-                        
                         break;
 
                     case growState.ADULT:
@@ -215,6 +234,9 @@ namespace asl_project
                                 break;
                             case 1:
                                 characterPBX.Image = Properties.Resources.sleepingch2;
+                                break;
+                            case 2:
+                                characterPBX.Image = Properties.Resources.sleepingch3;
                                 break;
                         }
                         break;
@@ -256,9 +278,11 @@ namespace asl_project
                             case 1:
                                 characterPBX.Image = Properties.Resources.ch2_2;
                                 break;
+                            case 2:
+                                characterPBX.Image = Properties.Resources.ch2_3;
+                                break;
                         }
                         break;
-
 
                     default:
                         characterPBX.Image = null;
@@ -331,11 +355,15 @@ namespace asl_project
 
         private void tmrTR_Tick(object sender, EventArgs e)
         {
-            if (stat_tired >= 100 || stat_tired < 0) return;
-            if (!sleeping) stat_tired++;
-            else {
-                if(stat_tired > 0) stat_tired--;
-            } 
+            if (stat_tired > 100 || stat_tired < 0) return;
+            if (!sleeping)
+            {
+                if (stat_tired < 100) stat_tired++;
+            }
+            else
+            {
+                if (stat_tired > 0) stat_tired--;
+            }
             lbTR.Text = stat_tired.ToString();
             pgbTR.Value = stat_tired;
 
@@ -365,18 +393,40 @@ namespace asl_project
 
             if (stat_grow >= 100)
             {
+                //자는 도중에 진화되면 잠에서 깨도록 설정
+                if (sleeping) 
+                { 
+                    sleeping = false;
+                    tmrH.Start();
+                    tmrST.Start();
+                }
+
                 if (grow_state == growState.BABY)
                 {
                     grow_state = growState.CHILD;
-                    characterPBX.Image = Properties.Resources.ch1;
+                    Random rand = new Random();
+                    adultCharacterIndex = rand.Next(3); //유아기에서 벗어나면 랜덤한 캐릭터 선택
+                    switch (adultCharacterIndex)
+                    {
+                        case 0:
+                            characterPBX.Image = Properties.Resources.ch1;
+                            statusButton.Image = Properties.Resources.status1;
+                            break;
+                        case 1:
+                            characterPBX.Image = Properties.Resources.ch3_1;
+                            statusButton.Image = Properties.Resources.status2;
+                            break;
+                        case 2:
+                            characterPBX.Image = Properties.Resources.ch4_1;
+                            statusButton.Image = Properties.Resources.status3;
+                            break;
+                    }
+                    
                     stat_grow = 0;
                 }
                 else if (grow_state == growState.CHILD)
                 {
                     grow_state = growState.ADULT;
-                    Random rand = new Random();
-                    adultCharacterIndex = rand.Next(3);
-                    
                     switch (adultCharacterIndex)
                     {
                         case 0:
@@ -385,6 +435,9 @@ namespace asl_project
                         case 1:
                             characterPBX.Image = Properties.Resources.ch2_2;
                             break;
+                        case 2:
+                            characterPBX.Image = Properties.Resources.ch2_3;
+                            break;
                     }
 
                     stat_grow = 0;
@@ -392,8 +445,7 @@ namespace asl_project
                 }
                 else
                 {
-                    tmrGrow.Stop();
-                    return;
+                    //nothing
                 }
 
                 lbGrowState.Text = get_state_string(grow_state);
@@ -408,14 +460,14 @@ namespace asl_project
 
 
             //사망 시스템
-            if ((stat_hungry + stat_tired + stat_stress) > 250) die();
+            if ((stat_hungry + stat_tired + stat_stress) >= 250) die();
         }
 
         private void die()
         {
             tmrH.Stop();
             tmrST.Stop();
-            tmrST.Stop();
+            tmrTR.Stop();
             tmrGrow.Stop();
 
             if (MessageBox.Show("사망했습니다...\n다시 시작하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.No)
@@ -472,6 +524,10 @@ namespace asl_project
                             case 1:
                                 eatingNoodlech.Image = Properties.Resources.eatingNoodlech2;
                                 eatingRicech.Image = Properties.Resources.eatingRicech2;
+                                break;
+                            case 2:
+                                eatingNoodlech.Image = Properties.Resources.eatingNoodlech3;
+                                eatingRicech.Image = Properties.Resources.eatingRicech3;
                                 break;
                         }
                         break;
