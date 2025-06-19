@@ -112,7 +112,7 @@ namespace asl_project
                 adultCharacterIndex = Properties.Settings.Default.AdultCharacterIndex;
 
                 DateTime exitTime = Properties.Settings.Default.exitTime;
-                if (exitTime > new DateTime(2000, 1, 1)) //저장해둔 내용이 있다면
+                if (exitTime != new DateTime(2000, 1, 1)) //저장해둔 내용이 있다면
                 {
                     TimeSpan diff = DateTime.Now - exitTime;
                     double diffSec = diff.TotalSeconds;
@@ -132,11 +132,11 @@ namespace asl_project
                     
                     stat_grow += (diffSec / 600);
 
-                    if (stat_tired > 100) stat_tired = 100;
-                    if (stat_tired < 0) stat_tired = 0;
-                    if (stat_hungry > 100) stat_hungry = 100;
-                    if (stat_stress > 100) stat_stress = 100;
-                    if (stat_grow > 100) stat_grow = 100;
+                    if (stat_tired >= 100) stat_tired = 100;
+                    if (stat_tired <= 0) stat_tired = 0;
+                    if (stat_hungry >= 100) stat_hungry = 100;
+                    if (stat_stress >= 100) stat_stress = 100;
+                    if (stat_grow >= 100) stat_grow = 100;
                 }
                 else //처음 게임을 시작해서 초기값인 경우
                 {
@@ -309,7 +309,9 @@ namespace asl_project
         {
             if (stat_tired >= 100 || stat_tired < 0) return;
             if (!sleeping) stat_tired++;
-            else stat_tired--;
+            else {
+                if(stat_tired > 0) stat_tired--;
+            } 
             lbTR.Text = stat_tired.ToString();
             pgbTR.Value = stat_tired;
 
