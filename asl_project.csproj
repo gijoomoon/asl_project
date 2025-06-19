@@ -106,6 +106,15 @@
     <None Include="Resources\Rice.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\ch3_1.png" />
+    <Content Include="Resources\ch3_2.png" />
+    <Content Include="Resources\ch3_3.png" />
+    <Content Include="Resources\ch3_4.png" />
+    <Content Include="Resources\ch4_1.png" />
+    <Content Include="Resources\ch4_2.png" />
+    <Content Include="Resources\ch4_3.png" />
+    <Content Include="Resources\ch4_4.png" />
+    <Content Include="Resources\status3.png" />
     <None Include="Resources\character.png" />
     <None Include="Resources\ch0.png" />
     <None Include="Resources\ch1.png" />

@@ -191,7 +191,20 @@ namespace asl_project
                         break;
 
                     case growState.CHILD:
-                        characterPBX.Image = Properties.Resources.sleeping1;
+                        switch (adultCharacterIndex)
+                        {
+                            case 0:
+                                characterPBX.Image = Properties.Resources.sleeping1;
+                                break;
+                            case 1:
+                                characterPBX.Image = Properties.Resources.ch3_4;
+                                break;
+                            case 2:
+                                characterPBX.Image = Properties.Resources.ch4_4;
+                                break;
+
+                        }
+                        
                         break;
 
                     case growState.ADULT:
@@ -220,7 +233,18 @@ namespace asl_project
                         break;
 
                     case growState.CHILD:
-                        characterPBX.Image = Properties.Resources.ch1;
+                        switch (adultCharacterIndex)
+                        {
+                            case 0:
+                                characterPBX.Image = Properties.Resources.ch1;
+                                break;
+                            case 1:
+                                characterPBX.Image = Properties.Resources.ch3_1;
+                                break;
+                            case 2:
+                                characterPBX.Image = Properties.Resources.ch4_1;
+                                break;
+                        }
                         break;
 
                     case growState.ADULT:
@@ -351,7 +375,7 @@ namespace asl_project
                 {
                     grow_state = growState.ADULT;
                     Random rand = new Random();
-                    adultCharacterIndex = rand.Next(2);
+                    adultCharacterIndex = rand.Next(3);
                     
                     switch (adultCharacterIndex)
                     {
@@ -420,9 +444,23 @@ namespace asl_project
                         break;
 
                     case growState.CHILD:
-                        eatingNoodlech.Image = Properties.Resources.eating1;
-                        eatingRicech.Image = Properties.Resources.eating1;
+                        switch (adultCharacterIndex)
+                        {
+                            case 0:
+                                eatingNoodlech.Image = Properties.Resources.eating1;
+                                eatingRicech.Image = Properties.Resources.eating1;
+                                break;
+                            case 1:
+                                eatingNoodlech.Image = Properties.Resources.ch3_2;
+                                eatingRicech.Image = Properties.Resources.ch3_3;
+                                break;
+                            case 2:
+                                eatingNoodlech.Image = Properties.Resources.ch4_2;
+                                eatingRicech.Image = Properties.Resources.ch4_3;
+                                break;
+                        }
                         break;
+                        
 
                     case growState.ADULT:
                         switch (adultCharacterIndex)
@@ -641,6 +679,7 @@ namespace asl_project
                 SaveData();
             }
         }
+
     }
 }
 

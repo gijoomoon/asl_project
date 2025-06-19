@@ -127,6 +127,9 @@
   <data name="eating1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eating1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="eatingNoodlech2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\eatingNoodlech2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="wall" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\wall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -145,6 +148,9 @@
   <data name="ch1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ch1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ch2_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ch2_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="eatingRicech" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\eatingricech.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -153,6 +159,9 @@
   </data>
   <data name="sleeping0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sleeping0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="eatingRicech2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\eatingRicech2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -163,8 +172,14 @@
   <data name="eating0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eating0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="btn_sleep" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btn_sleep.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="status" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\status1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sleepingch2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sleepingch2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="dd" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dd.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -178,22 +193,34 @@
   <data name="ch0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ch0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btn_sleep" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btn_sleep.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ch2_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ch2_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ch2_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ch2_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ch4_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ch4_41.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="eatingNoodlech2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\eatingNoodlech2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ch4_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ch4_31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="eatingRicech2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\eatingRicech2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ch4_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ch4_21.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sleepingch2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sleepingch2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ch4_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ch4_11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ch3_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ch3_41.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="status3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\status31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ch3_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ch3_31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ch3_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ch3_21.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ch3_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ch3_11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
