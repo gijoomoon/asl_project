@@ -117,12 +117,12 @@ namespace asl_project
                     TimeSpan diff = DateTime.Now - exitTime;
                     double diffSec = diff.TotalSeconds;
 
-                    if (sleeping)
+                    if (sleeping) 
                     {
                         stat_tired -= (int)(diffSec / 240);
-                        stat_hungry += (int)(diffSec / 360);
-                        stat_stress += (int)(diffSec / 360);
-                    }
+                        stat_hungry += (int)(diffSec / 540);
+                        stat_stress += (int)(diffSec / 540);
+                    } 
                     else 
                     {
                         stat_tired += (int)(diffSec / 240);
@@ -174,10 +174,21 @@ namespace asl_project
 
             if (!restart && (stat_hungry + stat_tired + stat_stress > 250)) die();
 
-            tmrH.Start();
-            tmrTR.Start();
-            tmrST.Start();
-            tmrGrow.Start();
+            if (sleeping)
+            {
+                tmrH.Stop();
+                tmrST.Stop();
+                tmrTR.Start();
+                tmrGrow.Start();
+            }
+            else
+            {
+                tmrH.Start();
+                tmrST.Start();
+                tmrTR.Start();
+                tmrGrow.Start();
+            }
+            
         }
 
         private void change_ch_image()
@@ -462,7 +473,7 @@ namespace asl_project
 
             //사망 시스템
             if ((stat_hungry + stat_tired + stat_stress) >= 250) die();
-            //if ((stat_hungry + stat_tired + stat_stress) >= 50) die(); //테스트 용도
+            //if ((stat_hungry + stat_tired + stat_stress) >= 10) die(); //테스트 용도
         }
 
         private void die()
