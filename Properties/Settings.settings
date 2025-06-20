@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="exitTime" Type="System.DateTime" Scope="User">
-      <Value Profile="(Default)">01/01/2000 00:00:01</Value>
+      <Value Profile="(Default)">2000-01-01</Value>
     </Setting>
     <Setting Name="exitHungry" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
