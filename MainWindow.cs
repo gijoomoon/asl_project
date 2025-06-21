@@ -25,6 +25,7 @@ namespace asl_project
         private System.Windows.Forms.Button statusButton;
         private string characterName;
         private int foodCount = 0;
+        private TimeSpan PlayTime;
 
         private int adultCharacterIndex = 0; // 캐릭터 종류
 
@@ -110,6 +111,7 @@ namespace asl_project
                 characterName = Properties.Settings.Default.Name;
 
                 adultCharacterIndex = Properties.Settings.Default.AdultCharacterIndex;
+                PlayTime = Properties.Settings.Default.PlayTime;
 
                 DateTime exitTime = Properties.Settings.Default.exitTime;
                 if (exitTime != new DateTime(2000, 1, 1)) //저장해둔 내용이 있다면
@@ -125,9 +127,9 @@ namespace asl_project
                     } 
                     else 
                     {
-                        stat_tired += (int)(diffSec / 240);
-                        stat_hungry += (int)(diffSec / 360);
-                        stat_stress += (int)(diffSec / 360);
+                        stat_tired += (int)(diffSec / 5);
+                        stat_hungry += (int)(diffSec / 5);
+                        stat_stress += (int)(diffSec / 5);
                     } 
                     
                     stat_grow += (diffSec / 600);
@@ -146,6 +148,7 @@ namespace asl_project
                     stat_grow = 0;
                     sleeping = false;
                     grow_state = growState.BABY;
+                    PlayTime = new TimeSpan(0, 0, 0);
                 }
             }
             else //캐릭터가 사망해서 다시 시작하는 경우
@@ -156,6 +159,7 @@ namespace asl_project
                 stat_grow = 0;
                 sleeping = false;
                 grow_state = growState.BABY;
+                PlayTime = new TimeSpan(0, 0, 0);
             }
 
             lbH.Text = stat_hungry.ToString();
@@ -402,6 +406,11 @@ namespace asl_project
             if (grow_state == growState.BABY) tmrH.Interval = 2400; //유아기이므로 배고픔 빠르게 증가
             else tmrH.Interval = 4800;
 
+            //테스트 용도
+            //if (grow_state == growState.BABY) tmrH.Interval = 240; //유아기이므로 배고픔 빠르게 증가
+            //else tmrH.Interval = 480;
+
+
             if (stat_grow >= 100)
             {
                 //자는 도중에 진화되면 잠에서 깨도록 설정 (성년기에선 진화가 더이상 되지 않으므로 제외)
@@ -464,7 +473,7 @@ namespace asl_project
             else
             {
                 stat_grow += 0.03;
-                //stat_grow += 1; //테스트 용도
+                //stat_grow += 2; //테스트 용도
             }
 
             lbGrow.Text = ((int)stat_grow).ToString() + "%";
@@ -474,6 +483,8 @@ namespace asl_project
             //사망 시스템
             if ((stat_hungry + stat_tired + stat_stress) >= 250) die();
             //if ((stat_hungry + stat_tired + stat_stress) >= 10) die(); //테스트 용도
+
+            PlayTime = PlayTime.Add(TimeSpan.FromMilliseconds(100));
         }
 
         private void die()
@@ -564,7 +575,7 @@ namespace asl_project
         private void button1_Click(object sender, EventArgs e)
         {
             string level = get_state_string(grow_state);
-            TimeSpan playTime = TimeSpan.FromSeconds(Environment.TickCount / 1000);
+            //TimeSpan playTime = TimeSpan.FromSeconds(Environment.TickCount / 1000);
             int growPercent = (int)stat_grow;
 
             Form popup = new Form();
@@ -595,7 +606,7 @@ namespace asl_project
 
             // Label: 플레이타임
             Label lblTime = new Label();
-            lblTime.Text = $"PlayTime: {playTime.Hours}시간 {playTime.Minutes}분";
+            lblTime.Text = $"PlayTime: {PlayTime.Hours}시간 {PlayTime.Minutes}분";
             lblTime.Location = new Point(20, 80);
             lblTime.AutoSize = true;
 
@@ -730,6 +741,7 @@ namespace asl_project
             Properties.Settings.Default.GrowState = (int)grow_state;
             Properties.Settings.Default.exitSleeping = sleeping;
             Properties.Settings.Default.AdultCharacterIndex = adultCharacterIndex;
+            Properties.Settings.Default.PlayTime = PlayTime;
 
             Properties.Settings.Default.Save();
         }
