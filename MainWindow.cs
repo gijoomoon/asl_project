@@ -127,9 +127,9 @@ namespace asl_project
                     } 
                     else 
                     {
-                        stat_tired += (int)(diffSec / 5);
-                        stat_hungry += (int)(diffSec / 5);
-                        stat_stress += (int)(diffSec / 5);
+                        stat_tired += (int)(diffSec / 240);
+                        stat_hungry += (int)(diffSec / 360);
+                        stat_stress += (int)(diffSec / 360);
                     } 
                     
                     stat_grow += (diffSec / 600);
